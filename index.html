@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malbec & Code | Descorchando Soluciones Web</title>
+    <link rel="preload" href="images/logo.webp" as="image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --malbec-purple: #6b21a8;
+            --malbec-neon: #a855f7;
+            --code-blue: #06b6d4;
+            --code-yellow: #facc15;
+            --bg-dark: #0a0a0a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .neon-border {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--malbec-neon);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.3);
+        }
+
+        .gradient-border {
+            position: relative;
+            border-radius: 0.75rem;
+            background: linear-gradient(to bottom right, var(--malbec-neon), var(--code-blue));
+            padding: 1px;
+        }
+
+        .inner-content {
+            background: var(--bg-dark);
+            border-radius: 0.7rem;
+        }
+
+        /* Animación de cursor */
+        .cursor-blink::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(107, 33, 168, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+        }
+
+        .logo-img {
+            filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.5));
+        }
+
+        /* Splash: logo primero, luego se desvanece */
+        .splash-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+        .splash-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash: logo carga primero y se desvanece -->
+    <div class="splash-overlay" id="splash">
+        <img src="images/logo.webp" alt="Malbec & Code" class="w-[35rem] h-[24rem] md:w-[50rem] md:h-[32rem] object-contain logo-img">
+    </div>
+
+    <div class="bg-mesh"></div>
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/5">
+        <div class="flex items-center space-x-3">
+            <span class="text-xl font-black tracking-tighter text-white uppercase italic hidden sm:block">
+                Malbec <span class="text-purple-500">&</span> Code
+            </span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-gray-400">
+            <a href="#servicios" class="hover:text-purple-400 transition">Soluciones</a>
+            <a href="#proceso" class="hover:text-cyan-400 transition">Proceso</a>
+            <a href="#contacto" class="hover:text-yellow-400 transition">Contacto</a>
+        </div>
+        <button class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-xs font-bold uppercase transition shadow-lg shadow-purple-900/20">
+            Cotizar Proyecto
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center px-6 pt-24 pb-12 text-center">
+        <div class="max-w-4xl space-y-8">
+            <div class="space-y-4">
+                <h2 class="code-font text-purple-400 text-lg md:text-xl font-light">
+                    <span class="text-gray-500">//</span> Descorchando Ideas
+                </h2>
+                <h1 class="text-5xl md:text-8xl font-black leading-none tracking-tight">
+                    CREAMOS TU <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-400">PRESENCIA DIGITAL</span>
+                </h1>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                    Transformamos conceptos en código de alta gama. Sitios que no solo se ven bien, sino que convierten.
+                </p>
+            </div>
+            
+            <!-- Editor Mockup -->
+            <div class="mt-8 mx-auto max-w-2xl gradient-border shadow-2xl">
+                <div class="inner-content p-4 text-left code-font text-sm md:text-base overflow-hidden">
+                    <div class="flex space-x-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="text-purple-400">const <span class="text-white">servicios</span> = {</p>
+                        <p class="pl-4 text-cyan-400">eCommerce: <span class="text-yellow-200">"Desarrollo de tiendas"</span>,</p>
+                        <p class="pl-4 text-cyan-400">landings: <span class="text-yellow-200">"Alta conversión"</span>,</p>
+                        <p class="pl-4 text-cyan-400">webApps: <span class="text-yellow-200">"Sistemas a medida"</span></p>
+                        <p class="text-purple-400">};</p>
+                        <p class="text-gray-500 mt-4">function descorchar() {</p>
+                        <p class="pl-4 text-white">return <span class="text-purple-500">MalbecAndCode</span>.init(servicios);</p>
+                        <p class="text-gray-500">}</p>
+                        <p class="text-white cursor-blink mt-2">_</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios en zigzag -->
+    <section id="servicios" class="py-16 px-6 bg-zinc-950/50">
+        <div class="max-w-6xl mx-auto space-y-24">
+            <div class="text-center mb-20">
+                <h3 class="text-sm font-bold text-purple-500 uppercase tracking-widest mb-2">Soluciones</h3>
+                <h2 class="text-4xl font-bold">DIGITALIZACIÓN DE ALTA GAMA</h2>
+                <p class="text-gray-500 max-w-xl mx-auto mt-4">
+                    Utilizamos tecnología de punta para asegurar que tu proyecto sea rápido, seguro y escalable.
+                </p>
+            </div>
+
+            <!-- Fila 1: contenido izquierda, icono derecha -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 md:p-10 rounded-2xl order-2 md:order-1">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-cart-shopping text-purple-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 italic uppercase">E-commerce</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Vende online con una plataforma optimizada para la conversión y fácil de gestionar.
+                    </p>
+                    <ul class="text-sm space-y-2 text-gray-500 code-font">
+                        <li><span class="text-purple-500">></span> Pagos Integrados</li>
+                        <li><span class="text-purple-500">></span> Panel Admin</li>
+                        <li><span class="text-purple-500">></span> Mobile First</li>
+                    </ul>
+                </div>
+                <div class="flex justify-center md:justify-end order-1 md:order-2">
+                    <div class="w-32 h-32 md:w-40 md:h-40 bg-purple-500/10 rounded-2xl flex items-center justify-center border border-purple-500/20">
+                        <i class="fa-solid fa-cart-shopping text-purple-400 text-5xl md:text-6xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fila 2: icono izquierda, contenido derecha -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="flex justify-center md:justify-start order-1">
+                    <div class="w-32 h-32 md:w-40 md:h-40 bg-cyan-500/10 rounded-2xl flex items-center justify-center border border-cyan-500/20">
+                        <i class="fa-solid fa-rocket text-cyan-400 text-5xl md:text-6xl"></i>
+                    </div>
+                </div>
+                <div class="glass-card p-8 md:p-10 rounded-2xl border-t-2 border-t-cyan-500/30 order-2">
+                    <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-rocket text-cyan-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 italic uppercase">Landing Pages</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Diseños enfocados en captar leads y maximizar el retorno de tu inversión publicitaria.
+                    </p>
+                    <ul class="text-sm space-y-2 text-gray-500 code-font">
+                        <li><span class="text-cyan-500">></span> SEO Optimizado</li>
+                        <li><span class="text-cyan-500">></span> Carga Rápida</li>
+                        <li><span class="text-cyan-500">></span> A/B Testing Ready</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Fila 3: contenido izquierda, icono derecha -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 md:p-10 rounded-2xl order-2 md:order-1">
+                    <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-code text-yellow-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 italic uppercase">Apps Web</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Software personalizado para optimizar procesos internos o lanzar tu propio producto SaaS.
+                    </p>
+                    <ul class="text-sm space-y-2 text-gray-500 code-font">
+                        <li><span class="text-yellow-500">></span> React / Next.js</li>
+                        <li><span class="text-yellow-500">></span> Backend Robusto</li>
+                        <li><span class="text-yellow-500">></span> Dashboard Personalizado</li>
+                    </ul>
+                </div>
+                <div class="flex justify-center md:justify-end order-1 md:order-2">
+                    <div class="w-32 h-32 md:w-40 md:h-40 bg-yellow-500/10 rounded-2xl flex items-center justify-center border border-yellow-500/20">
+                        <i class="fa-solid fa-code text-yellow-400 text-5xl md:text-6xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="py-20 px-6 text-center border-t border-white/5">
+        <div class="max-w-4xl mx-auto space-y-12">
+            <h2 class="text-3xl font-bold italic uppercase tracking-tighter">¿Listos para descorchar tu proyecto?</h2>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 flex-wrap">
+                <a href="https://wa.me/542604290083" target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold transition flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>WhatsApp</span>
+                    <span class="opacity-90 font-normal">2604 290083</span>
+                </a>
+                <a href="https://instagram.com/malbecycode" target="_blank" rel="noopener noreferrer" class="border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/5 transition flex items-center gap-2">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    @malbecycode
+                </a>
+                <a href="#" class="border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/5 transition">
+                    Ver Portfolio
+                </a>
+            </div>
+
+            <div class="pt-20 text-xs text-gray-600 uppercase tracking-widest code-font">
+                © 2024 Malbec & Code // Build with <span class="text-purple-500">Code</span> and <span class="text-red-500">Wine</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Splash: logo se muestra primero y se desvanece al cargar
+        (function() {
+            var splash = document.getElementById('splash');
+            if (splash) {
+                var tiempoVisible = 2000;
+                setTimeout(function() {
+                    splash.classList.add('fade-out');
+                    setTimeout(function() {
+                        splash.remove();
+                    }, 800);
+                }, tiempoVisible);
+            }
+        })();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
