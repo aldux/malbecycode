@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO & Copywriting Persuasivo -->
+    <title>Desarrollo Web y E-commerce a Medida | Aumenta tus Ventas | MalbecyCode</title>
+    <meta name="description" content="¿Tu web no convierte? En MalbecyCode desarrollamos Tiendas Online, Landing Pages y Web Apps de alta conversión. Solicita tu presupuesto y escala tu negocio.">
+    <!-- Local Business SEO - JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "MalbecyCode",
+      "image": "https://malbecycode.vercel.app/images/logo.webp",
+      "telephone": "+542604290083",
+      "email": "aldodamianbordon@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Rafael",
+        "addressRegion": "Mendoza",
+        "addressCountry": "AR"
+      },
+      "url": "https://malbecycode.vercel.app/",
+      "priceRange": "$$"
+    }
+    </script>
+    <link rel="preload" href="images/logo.webp" as="image">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config for Custom Colors -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              borgona: '#8B2E5D',
+              purpura: '#3C1A4F',
+              turquesa: '#00C2D1',
+              amarillo: '#F4B400',
+              beige: '#FDF6EC',
+              dark: '#0a0a0a'
+            }
+          }
+        }
+      }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --borgona: #8B2E5D;
+            --purpura: #3C1A4F;
+            --turquesa: #00C2D1;
+            --amarillo: #F4B400;
+            --beige: #FDF6EC;
+            --bg-dark: #0a0a0a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--beige);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .glass-card {
+            background: rgba(253, 246, 236, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(253, 246, 236, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: var(--turquesa);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px -10px rgba(0, 194, 209, 0.2);
+        }
+
+        .gradient-border {
+            position: relative;
+            border-radius: 0.75rem;
+            background: linear-gradient(to bottom right, var(--borgona), var(--turquesa));
+            padding: 1px;
+            box-shadow: 0 0 20px rgba(139, 46, 93, 0.3);
+        }
+
+        .inner-content {
+            background: var(--bg-dark);
+            border-radius: 0.7rem;
+        }
+
+        /* Animación de cursor */
+        .cursor-blink::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(139, 46, 93, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 194, 209, 0.1) 0px, transparent 50%);
+        }
+
+        /* Animación Marquee para Stack */
+        .marquee-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-wrapper::before, .marquee-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+        }
+        .marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-dark), transparent);
+        }
+        .marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-dark), transparent);
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Acordeón FAQ personalizado */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .logo-img {
+            filter: drop-shadow(0 0 10px rgba(139, 46, 93, 0.6));
+        }
+
+        .splash-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+        .splash-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Animación de latido (pulse) para CTAs principales */
+        .btn-pulse {
+            animation: pulse-shadow 2s infinite;
+        }
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 0 0 0 rgba(0, 194, 209, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 194, 209, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 194, 209, 0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash -->
+    <div class="splash-overlay" id="splash">
+        <img src="images/logo.webp" alt="Malbec & Code" class="w-[35rem] h-[24rem] md:w-[50rem] md:h-[32rem] object-contain logo-img">
+    </div>
+
+    <div class="bg-mesh"></div>
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/5" data-aos="fade-down">
+        <div class="flex items-center space-x-3">
+            <span class="text-xl font-black tracking-tighter text-beige uppercase italic hidden sm:block">
+                Malbec <span class="text-borgona">&</span> Code
+            </span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-gray-400">
+            <a href="#servicios" class="hover:text-turquesa transition">Soluciones</a>
+            <a href="#experiencia" class="hover:text-amarillo transition">Experiencia</a>
+            <a href="#portfolio" class="hover:text-borgona transition">Portfolio</a>
+            <a href="#contacto" class="hover:text-beige transition">Contacto</a>
+        </div>
+        <a href="#whatsapp-contacto" class="bg-turquesa/90 hover:bg-turquesa text-dark px-6 py-2.5 rounded-full text-xs font-bold uppercase transition shadow-lg shadow-turquesa/20 btn-pulse">
+            Multiplicar Ventas
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center px-6 pt-24 pb-12 text-center" overflow-hidden>
+        <div class="max-w-5xl space-y-8 relative z-10">
+            <div class="space-y-6" data-aos="zoom-in" data-aos-duration="1000">
+                <h2 class="code-font text-turquesa text-lg md:text-xl font-light">
+                    <span class="text-borgona">//</span> Sitios que Multiplican Ventas
+                </h2>
+                <h1 class="text-5xl md:text-[5.5rem] font-black leading-none tracking-tight">
+                    DESARROLLO WEB QUE <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-borgona via-purpura to-turquesa">
+                        GENERA CLIENTES
+                    </span>
+                </h1>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                    No necesitas otra web bonita que nadie visita. Desarrollamos tiendas online y landing pages de alta gama optimizadas para la conversión comercial y el retorno de inversión (ROI).
+                </p>
+                <div class="pt-6 flex justify-center" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://wa.me/542604290083" target="_blank" rel="noopener noreferrer" class="bg-dark border border-turquesa/50 hover:bg-turquesa/10 text-beige px-8 py-4 rounded-full font-bold transition flex items-center gap-3 shadow-[0_0_20px_rgba(0,194,209,0.2)] hover:shadow-[0_0_30px_rgba(0,194,209,0.4)] w-fit group">
+                        <i class="fa-brands fa-whatsapp text-2xl text-green-400 group-hover:scale-110 transition-transform"></i>
+                        <div class="flex flex-col text-left">
+                            <span class="text-lg leading-tight group-hover:text-turquesa transition-colors">Quiero más clientes</span>
+                            <span class="text-xs font-normal opacity-70">Vía WhatsApp</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Editor Mockup -->
+            <div class="mt-12 mx-auto max-w-2xl gradient-border" data-aos="fade-up" data-aos-delay="600">
+                <div class="inner-content p-5 text-left code-font text-sm md:text-base overflow-hidden relative">
+                    <!-- Blur reflections inside the editor -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-borgona/10 blur-[50px] rounded-full"></div>
+                    <div class="flex space-x-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-amarillo/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="text-borgona">const <span class="text-beige">servicios</span> = {</p>
+                        <p class="pl-4 text-turquesa">eCommerce: <span class="text-amarillo">"Desarrollo de tiendas"</span>,</p>
+                        <p class="pl-4 text-turquesa">landings: <span class="text-amarillo">"Alta conversión"</span>,</p>
+                        <p class="pl-4 text-turquesa">webApps: <span class="text-amarillo">"Sistemas a medida"</span></p>
+                        <p class="text-borgona">};</p>
+                        <p class="text-gray-500 mt-4">function descorchar() {</p>
+                        <p class="pl-4 text-beige">return <span class="text-borgona">MalbecAndCode</span>.init(servicios);</p>
+                        <p class="text-gray-500">}</p>
+                        <p class="text-beige cursor-blink mt-2">_</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Métricas (Nueva Sección) -->
+    <section class="py-10 border-y border-white/5 bg-black/30 backdrop-blur-sm" data-aos="fade-in">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/5">
+                <div class="space-y-2">
+                    <h4 class="text-4xl font-black text-turquesa">+50</h4>
+                    <p class="text-xs uppercase tracking-widest text-gray-500 font-bold">Proyectos Éxitosos</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-4xl font-black text-borgona">99%</h4>
+                    <p class="text-xs uppercase tracking-widest text-gray-500 font-bold">Satisfacción</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-4xl font-black text-amarillo">+5</h4>
+                    <p class="text-xs uppercase tracking-widest text-gray-500 font-bold">Años de Exp.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-4xl font-black text-beige">24/7</h4>
+                    <p class="text-xs uppercase tracking-widest text-gray-500 font-bold">Soporte Técnico</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios en zigzag -->
+    <section id="servicios" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto space-y-32">
+            <div class="text-center mb-24" data-aos="fade-up">
+                <h3 class="text-sm font-bold text-borgona uppercase tracking-widest mb-2">Soluciones</h3>
+                <h2 class="text-4xl md:text-5xl font-bold">DIGITALIZACIÓN DE ALTA GAMA</h2>
+                <p class="text-gray-400 max-w-xl mx-auto mt-6 text-lg">
+                    Utilizamos tecnología de punta para asegurar que tu proyecto sea rápido, seguro y escale con tus ventas.
+                </p>
+            </div>
+
+            <!-- Fila 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 md:p-12 rounded-3xl order-2 md:order-1 relative overflow-hidden" data-aos="fade-right">
+                    <div class="absolute -top-20 -left-20 w-40 h-40 bg-borgona/20 blur-[50px] rounded-full"></div>
+                    <div class="w-14 h-14 bg-borgona/10 border border-borgona/20 rounded-xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-cart-shopping text-borgona text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-black mb-4 italic uppercase text-beige">E-commerce</h4>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        "Vende las 24 horas del día mientras tú duermes. Tiendas online rápidas, con pagos integrados y un panel tan fácil de usar como tu celular."
+                    </p>
+                    <div class="text-sm space-y-4 text-gray-300 font-medium">
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-turquesa"></i> Pagos integrados para que cobres al instante.</p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-turquesa"></i> Panel autogestionable muy intuitivo.</p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-turquesa"></i> Diseño Mobile-First para vender desde Instagram.</p>
+                    </div>
+                </div>
+                <div class="flex justify-center md:justify-end order-1 md:order-2" data-aos="fade-left">
+                    <div class="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-borgona/20 blur-3xl rounded-full"></div>
+                        <div class="w-full h-full bg-dark/50 border-2 border-borgona/30 backdrop-blur-xl rounded-[2rem] rotate-3 hover:rotate-0 transition-transform duration-500 flex items-center justify-center shadow-2xl">
+                            <i class="fa-solid fa-cart-shopping text-borgona text-6xl md:text-8xl drop-shadow-[0_0_15px_rgba(139,46,93,0.8)]"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fila 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="flex justify-center md:justify-start order-1" data-aos="fade-right">
+                    <div class="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-turquesa/20 blur-3xl rounded-full"></div>
+                        <div class="w-full h-full bg-dark/50 border-2 border-turquesa/30 backdrop-blur-xl rounded-[2rem] -rotate-3 hover:rotate-0 transition-transform duration-500 flex items-center justify-center shadow-2xl">
+                            <i class="fa-solid fa-rocket text-turquesa text-6xl md:text-8xl drop-shadow-[0_0_15px_rgba(0,194,209,0.8)]"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-8 md:p-12 rounded-3xl order-2 relative overflow-hidden" data-aos="fade-left">
+                    <div class="absolute -top-20 -right-20 w-40 h-40 bg-turquesa/20 blur-[50px] rounded-full"></div>
+                    <div class="w-14 h-14 bg-turquesa/10 border border-turquesa/20 rounded-xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-rocket text-turquesa text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-black mb-4 italic uppercase text-beige">Landing Pages</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        "Deja de tirar dinero en publicidad que no convierte. Creamos páginas diseñadas psicológicamente para que el visitante deje sus datos o compre en el acto."
+                    </p>
+                    <div class="text-sm space-y-4 text-gray-300 font-medium">
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-borgona"></i> Copywriting persuasivo incluido.</p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-borgona"></i> Carga ultrarrápida (mejora en SEO).</p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-borgona"></i> Formularios conectados directo a tu WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fila 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 md:p-12 rounded-3xl order-2 md:order-1 relative overflow-hidden" data-aos="fade-right">
+                    <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-amarillo/20 blur-[50px] rounded-full"></div>
+                    <div class="w-14 h-14 bg-amarillo/10 border border-amarillo/20 rounded-xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-code text-amarillo text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-black mb-4 italic uppercase text-beige">Sistemas a Medida</h4>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        "Automatiza las tareas aburridas de tu negocio. Software a medida para que tú y tu equipo dejen de perder tiempo en Excel y se enfoquen en escalar."
+                    </p>
+                    <div class="text-sm space-y-4 text-gray-300 font-medium">
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-turquesa"></i> Adiós a las planillas desactualizadas.</p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-turquesa"></i> Arquitectura en la nube y alta seguridad.</p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-check text-turquesa"></i> Dashboards para ver métricas en tiempo real.</p>
+                    </div>
+                </div>
+                <div class="flex justify-center md:justify-end order-1 md:order-2" data-aos="fade-left">
+                    <div class="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-amarillo/20 blur-3xl rounded-full"></div>
+                        <div class="w-full h-full bg-dark/50 border-2 border-amarillo/30 backdrop-blur-xl rounded-[2rem] rotate-3 hover:rotate-0 transition-transform duration-500 flex items-center justify-center shadow-2xl">
+                            <i class="fa-solid fa-code text-amarillo text-6xl md:text-8xl drop-shadow-[0_0_15px_rgba(244,180,0,0.8)]"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack Tecnológico (Nueva Sección) -->
+    <section id="experiencia" class="py-16 bg-black/40 border-y border-white/5 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 text-center mb-10" data-aos="fade-up">
+            <h3 class="text-sm font-bold text-turquesa uppercase tracking-widest mb-2">Nuestro Stack</h3>
+            <h2 class="text-3xl font-bold">TECNOLOGÍA DE PUNTA</h2>
+            <p class="text-gray-500 mt-2 text-sm">Construimos sobre las herramientas más potentes del mercado.</p>
+        </div>
+        <div class="marquee-wrapper py-6">
+            <div class="marquee-content flex gap-16 text-5xl md:text-7xl text-white/20 hover:text-white/40 transition-colors">
+                <i class="fa-brands fa-html5 hover:text-orange-500 transition-colors duration-300"></i>
+                <i class="fa-brands fa-css3-alt hover:text-blue-500 transition-colors duration-300"></i>
+                <i class="fa-brands fa-js hover:text-yellow-400 transition-colors duration-300"></i>
+                <i class="fa-brands fa-react hover:text-cyan-400 transition-colors duration-300"></i>
+                <i class="fa-brands fa-node-js hover:text-green-500 transition-colors duration-300"></i>
+                <i class="fa-brands fa-github hover:text-white transition-colors duration-300"></i>
+                <i class="fa-brands fa-figma hover:text-pink-500 transition-colors duration-300"></i>
+                <i class="fa-brands fa-aws hover:text-orange-400 transition-colors duration-300"></i>
+                <!-- Duplicados para el scroll infinito suave -->
+                <i class="fa-brands fa-html5 hover:text-orange-500 transition-colors duration-300"></i>
+                <i class="fa-brands fa-css3-alt hover:text-blue-500 transition-colors duration-300"></i>
+                <i class="fa-brands fa-js hover:text-yellow-400 transition-colors duration-300"></i>
+                <i class="fa-brands fa-react hover:text-cyan-400 transition-colors duration-300"></i>
+                <i class="fa-brands fa-node-js hover:text-green-500 transition-colors duration-300"></i>
+                <i class="fa-brands fa-github hover:text-white transition-colors duration-300"></i>
+                <i class="fa-brands fa-figma hover:text-pink-500 transition-colors duration-300"></i>
+                <i class="fa-brands fa-aws hover:text-orange-400 transition-colors duration-300"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-sm font-bold text-amarillo uppercase tracking-widest mb-2">Portfolio</h3>
+                <h2 class="text-4xl md:text-5xl font-bold">PROYECTOS CON IMPACTO</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-4 text-lg">
+                    Una muestra visual de piezas digitales pensadas para destacar marca, producto y conversión.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+                <article class="glass-card rounded-3xl overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="overflow-hidden relative h-72">
+                        <div class="absolute inset-0 bg-borgona/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                        <img src="images/porfolio/1.png" alt="Proyecto Captación" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 relative">
+                        <p class="text-xs uppercase tracking-[0.2em] text-borgona font-bold mb-3">Proyecto 01</p>
+                        <h4 class="text-2xl font-black mb-3">Captación de Leads</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Landing diseñada para captar leads en 30 segundos. Estructura directa y persuasiva.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-3xl overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="overflow-hidden relative h-72">
+                        <div class="absolute inset-0 bg-turquesa/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                        <img src="images/porfolio/2.png" alt="E-commerce" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 relative">
+                        <p class="text-xs uppercase tracking-[0.2em] text-turquesa font-bold mb-3">Proyecto 02</p>
+                        <h4 class="text-2xl font-black mb-3">E-commerce Flash</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Tienda optimizada para móviles. Check-out en 2 clicks para evitar carritos abandonados.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-3xl overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                    <div class="overflow-hidden relative h-72">
+                        <div class="absolute inset-0 bg-amarillo/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                        <img src="images/porfolio/3.png" alt="Sistema" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 relative">
+                        <p class="text-xs uppercase tracking-[0.2em] text-amarillo font-bold mb-3">Proyecto 03</p>
+                        <h4 class="text-2xl font-black mb-3">CRM Inmobiliario</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Sistema de gestión a medida. Control de stock de propiedades e interacciones de clientes.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (Nueva Sección) -->
+    <section class="py-20 px-6 bg-black/40 border-t border-white/5">
+        <div class="max-w-3xl mx-auto space-y-12">
+            <div class="text-center" data-aos="fade-up">
+                <h3 class="text-sm font-bold text-purpura uppercase tracking-widest mb-2">Dudas Comunes</h3>
+                <h2 class="text-3xl font-bold">PREGUNTAS FRECUENTES</h2>
+            </div>
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="200">
+                <details class="glass-card rounded-2xl group cursor-pointer p-6">
+                    <summary class="text-lg font-bold flex justify-between items-center text-beige">
+                        ¿Cuánto demora la creación de una Landing Page?
+                        <i class="fa-solid fa-plus text-turquesa group-open:rotate-45 transition-transform"></i>
+                    </summary>
+                    <div class="pt-4 text-gray-400 text-sm leading-relaxed">
+                        Dependiendo de la complejidad y de si tienes el contenido (textos, imágenes) listo, solemos entregar una Landing Page de alta conversión entre 7 y 14 días hábiles.
+                    </div>
+                </details>
+                <details class="glass-card rounded-2xl group cursor-pointer p-6">
+                    <summary class="text-lg font-bold flex justify-between items-center text-beige">
+                        ¿El diseño se adaptará a celulares?
+                        <i class="fa-solid fa-plus text-turquesa group-open:rotate-45 transition-transform"></i>
+                    </summary>
+                    <div class="pt-4 text-gray-400 text-sm leading-relaxed">
+                        100%. Utilizamos un enfoque "Mobile-First", ya que más del 80% del tráfico hoy en día proviene de smartphones, sobre todo desde campañas de Instagram o Facebook.
+                    </div>
+                </details>
+                <details class="glass-card rounded-2xl group cursor-pointer p-6">
+                    <summary class="text-lg font-bold flex justify-between items-center text-beige">
+                        ¿Tengo que pagar mantenimiento mensual?
+                        <i class="fa-solid fa-plus text-turquesa group-open:rotate-45 transition-transform"></i>
+                    </summary>
+                    <div class="pt-4 text-gray-400 text-sm leading-relaxed">
+                        No obligatoriamente. Entregamos el proyecto llave en mano y optimizado. Ofrecemos planes de mantenimiento opcionales si requieres que nos encarguemos de las actualizaciones o subida de nuevos productos constantemente.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="py-24 px-6 text-center border-t border-white/5 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-borgona/10 to-transparent pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto space-y-12 relative z-10" data-aos="zoom-in">
+            <h2 class="text-4xl md:text-5xl font-black italic uppercase tracking-tighter text-beige">
+                ¿Listos para descorchar <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-borgona to-turquesa">tu proyecto?</span>
+            </h2>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 flex-wrap">
+                <a id="whatsapp-contacto" href="https://wa.me/542604290083" target="_blank" rel="noopener noreferrer" class="bg-turquesa/90 hover:bg-turquesa text-dark px-8 py-4 rounded-full font-bold transition flex items-center gap-3 shadow-[0_0_20px_rgba(0,194,209,0.3)] hover:shadow-[0_0_30px_rgba(0,194,209,0.5)] btn-pulse">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <div class="flex flex-col text-left">
+                        <span class="text-lg leading-tight">Agendar Asesoría</span>
+                        <span class="text-xs font-medium opacity-80">WhatsApp Directo</span>
+                    </div>
+                </a>
+                <a href="mailto:aldodamianbordon@gmail.com" class="bg-borgona hover:bg-borgona/80 text-beige px-8 py-4 rounded-full font-bold transition flex items-center gap-3 shadow-lg shadow-borgona/20">
+                    <i class="fa-solid fa-envelope text-xl"></i>
+                    <span>Enviar Email 👉</span>
+                </a>
+                <a href="https://instagram.com/malbecycode" target="_blank" rel="noopener noreferrer" class="border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/10 transition flex items-center gap-2 text-beige">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    @malbecycode
+                </a>
+            </div>
+
+            <div class="pt-24 text-xs text-gray-500 uppercase tracking-widest code-font">
+                © 2026 Malbec & Code // Build with <span class="text-purpura font-bold">Code</span> and <span class="text-borgona font-bold">Wine</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar animaciones de scroll
+        AOS.init({
+            once: true, // Que la animación suceda solo una vez al bajar
+            offset: 100, // Desplazamiento desde el punto original
+            duration: 800, // Duración de la animación
+            easing: 'ease-out-cubic',
+        });
+
+        // Splash: logo se muestra primero y se desvanece al cargar
+        window.addEventListener('load', function() {
+            var splash = document.getElementById('splash');
+            if (splash) {
+                var tiempoVisible = 1500;
+                setTimeout(function() {
+                    splash.classList.add('fade-out');
+                    setTimeout(function() {
+                        splash.remove();
+                    }, 800);
+                }, tiempoVisible);
+            }
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                var dest = document.querySelector(this.getAttribute('href'));
+                if(dest) {
+                    dest.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
